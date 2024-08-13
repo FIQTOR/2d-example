@@ -126,7 +126,7 @@ function App() {
                 ? "img/blink_eye.png"
                 : "img/eye.webp"
             }`}
-            className={`w-14 h-14 ${
+            className={`w-14 ${blink ? 'h-5' : 'h-14'} ${
               shyDuration !== 0 && "rotate-12"
             }`}
           />
@@ -138,7 +138,7 @@ function App() {
                 ? "img/blink_eye.png"
                 : "img/eye.webp"
             }`}
-            className={`w-14 h-14 ${
+            className={`w-14 ${blink ? 'h-5' : 'h-14'} ${
               shyDuration !== 0 && "-rotate-12"
             }`}
           />
