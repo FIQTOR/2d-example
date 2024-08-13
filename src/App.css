@@ -1,38 +1,100 @@
-.App {
-  text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.perspective {
+  perspective: 1000px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.transform-style-3d {
+  transform-style: preserve-3d;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.flip {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+}
+
+/* img {
+  filter: hue-rotate(90deg);
+  -webkit-filter: hue-rotate(90deg);
+} */
+
+.hair {
+  animation-name: hair-animation;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+[data-delay="0.2"] {
+  animation-delay: 0.2s;
+}
+
+[data-delay="0.4"] {
+  animation-delay: 0.4s;
+}
+
+[data-delay="0.6"] {
+  animation-delay: 0.6s;
+}
+
+@keyframes hair-animation {
+
+  0%,
+  100% {
+    rotate: 90deg;
+  }
+
+  50% {
+    rotate: 100deg;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.shake {
+  animation-name: shake-animation;
+  animation-duration: 0.3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
-.App-link {
-  color: #61dafb;
-}
+@keyframes shake-animation {
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  0%,
+  100% {
+    translate: 0px 0px;
   }
-  to {
-    transform: rotate(360deg);
+
+  50% {
+    translate: -15px -15px;
+  }
+}
+
+.ribbon-shake {
+  animation-name: ribbon-shake-animation;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes ribbon-shake-animation {
+
+  0%,
+  75%,
+  100% {
+    translate: 0px 0px;
+  }
+
+  80%, 90% {
+    translate: -5px -5px;
+  }
+  85%, 95% {
+    translate: 5px 5px;
   }
 }
