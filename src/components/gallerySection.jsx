@@ -103,11 +103,13 @@ const GallerySection = ({ handleCloseSection }) => {
       </button>
       <div
         ref={cardRef} className={`absolute w-full min-h-screen flex justify-center items-center duration-300  ${fliped ? 'flip' : ''} -z-10`}>
-        <div className='absolute w-max translate-x-4 -translate-y-4' style={{
+        <div className='absolute w-max translate-x-2 -translate-y-2' style={{
           zIndex: zIndexFront
         }}>
           <img src="img/gallery_box_1.webp" alt="" className='w-80 bg-cover left-0 top-0 -z-10' />
-          <div className='absolute top-3 left-8'>
+          <div className='absolute top-3 left-8' style={{
+            zIndex: (zIndexFront > zIndexBack) ? 10 : -10
+          }}>
             <img src="img/girlfriend.png" alt="" className='w-64 bg-cover' />
           </div>
           <div className='absolute w-24 -translate-y-10 translate-x-56' style={{

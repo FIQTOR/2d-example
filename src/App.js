@@ -126,7 +126,7 @@ function App() {
                 ? "img/blink_eye.png"
                 : "img/eye.webp"
             }`}
-            className={`w-14 bg-cover h-fit ${
+            className={`w-14 h-14 ${
               shyDuration !== 0 && "rotate-12"
             }`}
           />
@@ -138,7 +138,7 @@ function App() {
                 ? "img/blink_eye.png"
                 : "img/eye.webp"
             }`}
-            className={`w-14 bg-cover h-fit ${
+            className={`w-14 h-14 ${
               shyDuration !== 0 && "-rotate-12"
             }`}
           />
@@ -165,7 +165,7 @@ function App() {
             src={`${
               shyDuration !== 0 ? "img/cute_mouth.png" : "img/mouth.png"
             }`}
-            className="w-20 bg-cover h-fit"
+            className="w-20 h-7"
           />
         </div>
       </button>
