@@ -84,7 +84,7 @@ const MailSection = ({ handleCloseSection }) => {
 
       <button
         onClick={() => handleCloseSection(handleCloseSection)}
-        className={`${isRendered ? "-translate-x-60" : "translate-x-40"
+        className={`${isRendered ? "top-7" : "top-[50%]"
           } absolute flex justify-center items-center w-40 h-40 active:opacity-90 duration-300`}
       >
         <img src="img/mail.png" className="w-14 z-20 translate-x-1" />
@@ -98,7 +98,7 @@ const MailSection = ({ handleCloseSection }) => {
           <span className='text-sm absolute left-0 bottom-0 w-full text-right pr-14 font-semibold italic'>{mails[mailIndex].lower}</span>
         </div>
       </div>
-      <div className='absolute translate-x-60 text-[rgb(243,215,212)]'>
+      <div className='absolute translate-y-48 text-[rgb(243,215,212)]'>
         {mailIndex > 0 &&
           <button onClick={() => handleTypeWriterEffect(mailIndex - 1)} className='active:opacity-80'>
             <TbCircleArrowLeft className='w-16 h-16' />

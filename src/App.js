@@ -42,14 +42,6 @@ function App() {
     };
   }, []);
 
-  if (isMobileView) {
-    return (
-      <div className="w-full min-h-screen flex justify-center items-center font-semibold text-xl text-center">
-        Please rotate your phone to landscape
-      </div>
-    );
-  }
-
   const handleBlink = () => {
     setInterval(() => {
       setBlink(true);
@@ -84,8 +76,17 @@ function App() {
     shyIntervalRef.current = setInterval(handle, 1000);
   };
 
+  
+  // if (isMobileView) {
+  //   return (
+  //     <div className="w-full min-h-screen flex justify-center items-center font-semibold text-xl text-center">
+  //       Please rotate your phone to landscape
+  //     </div>
+  //   );
+  // }
+
   return (
-    <div className="flex bg-[rgba(238,99,160)] w-full min-h-screen justify-center relative overflow-hidden">
+    <div className="flex bg-[rgba(238,99,160)] w-full min-h-screen justify-center absolute left-0 top-0 overflow-hidden">
       {showMenu && <Menu />}
       <button
         onClick={handleShy}
@@ -116,7 +117,7 @@ function App() {
             />
           </div>
         </div>
-        <div className="absolute flex gap-80 mb-56">
+        <div className="absolute flex gap-40 mb-36">
           <img
             src={`${
               shyDuration !== 0
@@ -125,7 +126,7 @@ function App() {
                 ? "img/blink_eye.png"
                 : "img/eye.webp"
             }`}
-            className={`w-20 bg-cover h-fit ${
+            className={`w-14 bg-cover h-fit ${
               shyDuration !== 0 && "rotate-12"
             }`}
           />
@@ -137,34 +138,34 @@ function App() {
                 ? "img/blink_eye.png"
                 : "img/eye.webp"
             }`}
-            className={`w-20 bg-cover h-fit ${
+            className={`w-14 bg-cover h-fit ${
               shyDuration !== 0 && "-rotate-12"
             }`}
           />
         </div>
-        <div className="absolute flex gap-[200px]">
-          <img src="img/left_mustache.png" className="w-60 h-32" />
-          <img src="img/right_mustache.png" className="w-60 h-32" />
+        <div className="absolute flex gap-[100px]">
+          <img src="img/left_mustache.png" className="w-32 h-16" />
+          <img src="img/right_mustache.png" className="w-32 h-16" />
         </div>
-        <div className="absolute flex gap-[300px] mb-20">
+        <div className="absolute flex gap-[130px] mb-14">
           {shyDuration === 0 ? (
             <>
-              <div className="w-24 h-14 bg-white bg-opacity-50 rounded-full -translate-x-10 blur-md"></div>
-              <div className="w-24 h-14 bg-white bg-opacity-50 rounded-full translate-x-10 blur-md"></div>
+              <div className="w-12 h-7 bg-white bg-opacity-50 rounded-full -translate-x-5 blur-md"></div>
+              <div className="w-12 h-7 bg-white bg-opacity-50 rounded-full translate-x-5 blur-md"></div>
             </>
           ) : (
             <>
-              <img src="img/left_shy_blush.webp" className="w-40" />
-              <img src="img/right_shy_blush.webp" className="w-40" />
+              <img src="img/left_shy_blush.webp" className="w-20" />
+              <img src="img/right_shy_blush.webp" className="w-20" />
             </>
           )}
         </div>
-        <div className="absolute flex gap-96 mt-60">
+        <div className="absolute flex gap-96 mt-36">
           <img
             src={`${
               shyDuration !== 0 ? "img/cute_mouth.png" : "img/mouth.png"
             }`}
-            className="w-32 bg-cover h-fit"
+            className="w-20 bg-cover h-fit"
           />
         </div>
       </button>
@@ -177,7 +178,7 @@ function App() {
           className="active:opacity-90 z-20 translate-y-4"
           onClick={() => setShowMenu(!showMenu)}
         >
-          <img src="img/love.webp" className="w-32 aspect-square" />
+          <img src="img/love.webp" className="w-20 aspect-square" />
         </button>
       </div>
     </div>
@@ -229,7 +230,7 @@ const Menu = () => {
       <button
         onClick={() => handleOpenSection(setMailSection)}
         className={`${
-          isRendered ? "translate-x-40" : "translate-x-0"
+          isRendered ? "translate-x-32" : "translate-x-0"
         } absolute flex justify-center items-center w-40 h-40 active:opacity-90 duration-300`}
       >
         <img src="img/mail.png" className="w-14 z-20 translate-x-1" />
@@ -238,7 +239,7 @@ const Menu = () => {
       <button
         onClick={() => handleOpenSection(setMusicSection)}
         className={`${
-          isRendered ? "-translate-x-40" : "translate-x-0"
+          isRendered ? "-translate-x-32" : "translate-x-0"
         } absolute flex justify-center items-center w-40 h-40 active:opacity-90 duration-300`}
       >
         <img src="img/music.png" className="w-10 z-20 translate-x-1" />

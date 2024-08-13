@@ -88,14 +88,14 @@ const GiftSection = ({ handleCloseSection }) => {
 
       <button
         onClick={() => handleCloseSection(handleCloseSection)}
-        className={`${isRendered ? "-translate-x-60" : "translate-y-28"
+        className={`${isRendered ? "top-7" : "top-[50%]"
           } absolute flex justify-center items-center w-40 h-40 active:opacity-90 duration-300`}
       >
-        <img src="img/gift.png" className="w-14 z-20 translate-x-1" />
+        <img src="img/gift.png" className="w-14 z-10 translate-x-1" />
         <img src="img/menu_button.webp" className="absolute w-32" />
       </button>
 
-      <div className='absolute'>
+      <div className='absolute z-20'>
         <img src="img/mail_box.webp" alt="" className='w-80' />
         <div className='absolute top-0 left-20'>
           <span>FOR</span>
@@ -105,7 +105,7 @@ const GiftSection = ({ handleCloseSection }) => {
       </div>
 
       {mailIndex === (mails.length - 1) &&
-        <div className='absolute translate-y-32 justify-center flex gap-7'>
+        <div className='absolute translate-y-40 justify-center flex flex-wrap gap-7'>
           <button onClick={() => handleAnniversaryDate('07 MEI 2018')} className='w-32 py-2 bg-[rgb(243,215,212)] border-2 border-[rgba(112,44,43)] rounded-2xl active:opacity-70
         '>
             07 MEI 2018
@@ -120,7 +120,7 @@ const GiftSection = ({ handleCloseSection }) => {
         </div>
       }
 
-      <div className='absolute translate-x-60 text-white'>
+      <div className='absolute bottom-14 text-white'>
         {mailIndex > 0 &&
           <button onClick={() => handleTypeWriterEffect(mailIndex - 1)} className='active:opacity-80'>
             <TbCircleArrowLeft className='w-16 h-16' />
@@ -134,9 +134,9 @@ const GiftSection = ({ handleCloseSection }) => {
 
       {showWrong &&
         <div className='absolute top-0 left-0 w-full min-h-screen bg-[rgb(243,215,212)] flex
-      justify-center items-center flex-col gap-4'>
+      justify-center items-center flex-col gap-4 z-20'>
           <span className='font-bold text-2xl max-w-52 text-center'>Masa Kamu Gainget Sih -_-</span>
-          <button className='active:opacity-70' onClick={() => setShowWrong(false)}>Coba Lagi</button>
+          <button className='active:opacity-70 px-4 py-2 rounded-md bg-[rgb(251,205,200)]' onClick={() => setShowWrong(false)}>Coba Lagi</button>
         </div>
       }
     </div>

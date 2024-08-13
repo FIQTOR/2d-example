@@ -24,7 +24,7 @@ const MusicSection = ({ handleCloseSection }) => {
 
       <button
         onClick={() => handleCloseSection(handleCloseSection)}
-        className={`${isRendered ? "-translate-x-72" : "-translate-x-40"
+        className={`${isRendered ? "top-7" : ""
           } absolute flex justify-center items-center w-40 h-40 active:opacity-90 duration-300 z-20`}
       >
         <img src="img/music.png" className="w-10 z-20 translate-x-1" />
@@ -32,12 +32,12 @@ const MusicSection = ({ handleCloseSection }) => {
       </button>
 
       <div className='gap-2 text-white'>
-        {Song(musicIndex, 0, 'music/2796268-uhd_3840_2160_25fps.mp4', '-translate-y-24', '-translate-x-36', handleOpenSong)}
-        {Song(musicIndex, 1, 'music/2796268-uhd_3840_2160_25fps.mp4', 'translate-y-24', '-translate-x-36', handleOpenSong)}
-        {Song(musicIndex, 2, 'music/2796268-uhd_3840_2160_25fps.mp4', '-translate-y-24', 'translate-x-0', handleOpenSong)}
-        {Song(musicIndex, 3, 'music/2796268-uhd_3840_2160_25fps.mp4', 'translate-y-24', 'translate-x-0', handleOpenSong)}
-        {Song(musicIndex, 4, 'music/2796268-uhd_3840_2160_25fps.mp4', '-translate-y-24', 'translate-x-36', handleOpenSong)}
-        {Song(musicIndex, 5, 'music/2796268-uhd_3840_2160_25fps.mp4', 'translate-y-24', 'translate-x-36', handleOpenSong)}
+        {Song(musicIndex, 0, 'music/2796268-uhd_3840_2160_25fps.mp4', '-translate-y-24', '-translate-x-20', handleOpenSong)}
+        {Song(musicIndex, 1, 'music/2796268-uhd_3840_2160_25fps.mp4', 'translate-y-24', '-translate-x-20', handleOpenSong)}
+        {Song(musicIndex, 2, 'music/2796268-uhd_3840_2160_25fps.mp4', 'translate-y-72', '-translate-x-20', handleOpenSong)}
+        {Song(musicIndex, 3, 'music/2796268-uhd_3840_2160_25fps.mp4', 'translate-y-72', 'translate-x-20', handleOpenSong)}
+        {Song(musicIndex, 4, 'music/2796268-uhd_3840_2160_25fps.mp4', '-translate-y-24', 'translate-x-20', handleOpenSong)}
+        {Song(musicIndex, 5, 'music/2796268-uhd_3840_2160_25fps.mp4', 'translate-y-24', 'translate-x-20', handleOpenSong)}
 
         {musicIndex !== null && <button onClick={() => setMusicIndex(null)} className='absolute top-7 right-7'>
           <TbX className="w-7 h-7" />

@@ -95,41 +95,41 @@ const GallerySection = ({ handleCloseSection }) => {
 
       <button
         onClick={() => handleCloseSection(handleCloseSection)}
-        className={`${isRendered ? "-translate-x-72" : "-translate-y-28"
-          } absolute flex justify-center items-center w-40 h-40 active:opacity-90 duration-300`}
+        className={`${isRendered ? "top-7" : "top-[50%]"
+          } -z-20 absolute flex justify-center items-center w-40 h-40 active:opacity-90 duration-300`}
       >
         <img src="img/camera.png" className="w-16 z-20 translate-x-1" />
         <img src="img/menu_button.webp" className="absolute w-32" />
       </button>
       <div
-        ref={cardRef} className={`absolute w-full min-h-screen flex justify-center items-center duration-300 perspective transform-style-3d  ${fliped ? 'flip' : ''} -z-10`}>
+        ref={cardRef} className={`absolute w-full min-h-screen flex justify-center items-center duration-300  ${fliped ? 'flip' : ''} -z-10`}>
         <div className='absolute w-max translate-x-4 -translate-y-4' style={{
           zIndex: zIndexFront
         }}>
-          <img src="img/gallery_box_1.webp" alt="" className='w-96 bg-cover left-0 top-0 -z-10' />
-          <div className='absolute top-7 left-16'>
+          <img src="img/gallery_box_1.webp" alt="" className='w-80 bg-cover left-0 top-0 -z-10' />
+          <div className='absolute top-3 left-8'>
             <img src="img/girlfriend.png" alt="" className='w-64 bg-cover' />
           </div>
-          <div className='absolute w-40 -translate-y-16 translate-x-64' style={{
+          <div className='absolute w-24 -translate-y-10 translate-x-56' style={{
             zIndex: (zIndexFront > zIndexBack) ? 10 : -10
           }}>
-            <img src="img/ribbon.webp" alt="" className='w-40 ribbon-shake' />
+            <img src="img/ribbon.webp" alt="" className='w-32 ribbon-shake' />
           </div>
         </div>
         <div className='absolute w-max flip' style={{
           zIndex: zIndexBack
         }}>
-          <img src="img/gallery_box_2.webp" alt="" className='w-96 bg-cover left-0 top-0 -z-10' />
-          <div className='w-full h-full max-h-48 flex flex-col absolute px-14 top-8 gap-4'>
+          <img src="img/gallery_box_2.webp" alt="" className='w-80 bg-cover left-0 top-0 -z-10' />
+          <div className='w-full h-full max-h-40 flex flex-col absolute px-7 top-8 gap-2'>
             <span className='text-sm font-bold italic text-center w-full'>{mails[mailIndex].upper}</span>
             <span className='text-xs font-semibold'>{displayText}</span>
             <span className='text-sm absolute left-0 bottom-0 w-full text-right pr-14 font-semibold italic'>{mails[mailIndex].lower}</span>
           </div>
         </div>
-        <img src="img/slash.webp" alt="" className='absolute w-[570px] h-[70px] z-50 translate-y-40' />
+        <img src="img/slash.webp" alt="" className='absolute w-96 h-[50px] z-50 translate-y-36' />
       </div>
 
-      <button className="absolute translate-x-72" onClick={() => handleFlip()}>
+      <button className="absolute bottom-14" onClick={() => handleFlip()}>
         <TbView360Arrow className='w-20 h-20 text-[rgb(243,215,212)]' />
       </button>
     </div>
