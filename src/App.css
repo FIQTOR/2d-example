@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: rgba(238,99,160);
+  background-color: rgba(238, 99, 160);
 }
 
 .flip {
@@ -83,10 +83,17 @@ body {
     translate: 0px 0px;
   }
 
-  80%, 90% {
+  80%,
+  90% {
     translate: -5px -5px;
   }
-  85%, 95% {
+
+  85%,
+  95% {
     translate: 5px 5px;
   }
+}
+
+.title-stroke {
+  -webkit-text-stroke: 1px black;
 }

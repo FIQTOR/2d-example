@@ -53,6 +53,11 @@ const MailSection = ({ handleCloseSection }) => {
     }
   }, []);
 
+  const stopTypewriterEffect = () => {
+    clearInterval(intervalRef.current);
+    setDisplayText(mails[mailIndex].text)
+  }
+
   const handleTypeWriterEffect = (valueMailIndex) => {
     // Clear any existing interval
     if (intervalRef.current) {
@@ -78,27 +83,27 @@ const MailSection = ({ handleCloseSection }) => {
 
   return (
     <div className='absolute w-full min-h-screen bg-black bg-opacity-70 z-30 flex justify-center items-center backdrop-blur-sm'>
-      <button className='absolute top-14 left-14' onClick={() => handleCloseSection(handleCloseSection)}>
+      <button className='absolute top-14 left-14 hidden md:block' onClick={() => handleCloseSection(handleCloseSection)}>
         <TbArrowBackUp className='text-white w-10 h-10' />
       </button>
 
       <button
         onClick={() => handleCloseSection(handleCloseSection)}
-        className={`${isRendered ? "top-7" : "top-[50%]"
-          } absolute flex justify-center items-center w-40 h-40 active:opacity-90 duration-300`}
+        className={`${isRendered ? "-translate-y-48 md:translate-y-0 md:-translate-x-96" : ""
+          } absolute flex justify-center items-center md:scale-150 w-40 h-40 active:opacity-90 duration-300`}
       >
         <img src="img/mail.png" className="w-14 z-20 translate-x-1" />
         <img src="img/menu_button.webp" className="absolute w-32" />
       </button>
-      <div className='relative'>
+      <button className='relative md:scale-150' onClick={stopTypewriterEffect}>
         <img src="img/love_box.webp" alt="" className='w-96 bg-cover left-0 top-0 -z-10' />
         <div className='w-full h-full max-h-36 flex flex-col z-20 absolute px-14 top-20'>
           <span className='text-sm font-semibold italic'>{mails[mailIndex].upper}</span>
-          <span className='text-xs font-semibold'>{displayText}</span>
+          <span className='text-xs font-semibold text-left'>{displayText}</span>
           <span className='text-sm absolute left-0 bottom-0 w-full text-right pr-14 font-semibold italic'>{mails[mailIndex].lower}</span>
         </div>
-      </div>
-      <div className='absolute translate-y-48 text-[rgb(243,215,212)]'>
+      </button>
+      <div className='absolute translate-y-44 md:translate-y-0 md:translate-x-96 md:scale-150 text-[rgb(243,215,212)]'>
         {mailIndex > 0 &&
           <button onClick={() => handleTypeWriterEffect(mailIndex - 1)} className='active:opacity-80'>
             <TbCircleArrowLeft className='w-16 h-16' />
