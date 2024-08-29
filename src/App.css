@@ -2,6 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Orbitron:wght@400..900&display=swap'); */
+
+@font-face {
+  font-family: 'Fredoka';
+  src: url('./font/fredoka.ttf') format('truetype');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Chewy';
+  src: url('./font/chewy.ttf') format('truetype');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JosefinsSans';
+  src: url('./font/josefinssans.ttf') format('truetype');
+  font-style: normal;
+}
+
+.font-fredoka {
+  font-family: 'Fredoka', sans-serif;
+}
+
+.font-chewy {
+  font-family: 'Chewy', sans-serif;
+}
+
+.font-josefinssans {
+  font-family: 'JosefinsSans', sans-serif;
+}
+
+.stroke-text {
+  -webkit-text-stroke: 1px #a30d42;
+}
+
+.splice-text {
+  -webkit-text-stroke: 1px #ff0063;
+  /* Stroke width and color */
+  position: relative;
+  /* Offset the stroke 2px to the right */
+}
+
+
 body {
   background-color: rgba(238, 99, 160);
 }
@@ -26,15 +70,15 @@ body {
 }
 
 [data-delay="0.2"] {
-  animation-delay: 0.2s;
+  animation-delay: -0.2s;
 }
 
 [data-delay="0.4"] {
-  animation-delay: 0.4s;
+  animation-delay: -0.4s;
 }
 
 [data-delay="0.6"] {
-  animation-delay: 0.6s;
+  animation-delay: -0.6s;
 }
 
 @keyframes hair-animation {
@@ -96,4 +140,260 @@ body {
 
 .title-stroke {
   -webkit-text-stroke: 1px black;
+}
+
+.cloud1 {
+  animation: cloud 3s infinite;
+  animation-delay: 1s;
+}
+
+.cloud2 {
+  animation: cloud 3s infinite;
+  animation-delay: 1.5s;
+}
+
+.cloud3 {
+  animation: cloud 3s infinite;
+  animation-delay: 2s;
+}
+
+
+@keyframes cloud {
+  0% {
+    translate: -50px 0px;
+  }
+
+  50% {
+    translate: 0px 0px;
+  }
+
+  100% {
+    translate: -50px 0px;
+  }
+}
+
+
+.love {
+  animation: love 2.3s infinite;
+  -webkit-animation: love 2.3s infinite;
+}
+
+@keyframes love {
+  0% {
+    translate: 0px 0px;
+    opacity: 1;
+  }
+
+  100% {
+    translate: 0px -100px;
+    opacity: 0;
+  }
+}
+
+.breathe {
+  animation: breathe 2s infinite;
+}
+
+@keyframes breathe {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.04);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.unselectable {
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.muka {
+  background-image: url(../public/img/muka.png);
+}
+
+/* Combined bounce and flip animation */
+.bounce-flip {
+  animation: bounce-flip 4s infinite;
+  -webkit-animation: bounce-flip 4s infinite;
+}
+
+/* Keyframes for bounce and flip animation */
+@keyframes bounce-flip {
+
+  0%,
+  40%,
+  100% {
+    transform: translateY(-10px) rotate(0deg) scaleX(1);
+    animation-timing-function: ease-out;
+    -webkit-transform: translateY(-10px) rotate(0deg) scaleX(1);
+    -moz-transform: translateY(-10px) rotate(0deg) scaleX(1);
+    -ms-transform: translateY(-10px) rotate(0deg) scaleX(1);
+    -o-transform: translateY(-10px) rotate(0deg) scaleX(1);
+  }
+
+  5%,
+  45% {
+    transform: translateY(0) scaleX(1.1) scaleY(0.9);
+    -webkit-transform: translateY(0) scaleX(1.1) scaleY(0.9);
+    -moz-transform: translateY(0) scaleX(1.1) scaleY(0.9);
+    -ms-transform: translateY(0) scaleX(1.1) scaleY(0.9);
+    -o-transform: translateY(0) scaleX(1.1) scaleY(0.9);
+  }
+
+  20% {
+    transform: translateY(-100px) rotate(0deg) scaleY(1.2) rotate(360deg);
+    -webkit-transform: translateY(-100px) rotate(0deg) scaleY(1.2) rotate(360deg);
+    -moz-transform: translateY(-100px) rotate(0deg) scaleY(1.2) rotate(360deg);
+    -ms-transform: translateY(-100px) rotate(0deg) scaleY(1.2) rotate(360deg);
+    -o-transform: translateY(-100px) rotate(0deg) scaleY(1.2) rotate(360deg);
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    transform: translateY(-100px) rotate(0deg) rotate(360deg);
+    -webkit-transform: translateY(-100px) rotate(0deg) rotate(360deg);
+    -moz-transform: translateY(-100px) rotate(0deg) rotate(360deg);
+    -ms-transform: translateY(-100px) rotate(0deg) rotate(360deg);
+    -o-transform: translateY(-100px) rotate(0deg) rotate(360deg);
+    animation-timing-function: ease-in;
+  }
+}
+
+/* Combined bounce and flip animation */
+.bounce-flip1 {
+  animation: bounce-flip1 4s infinite;
+  -webkit-animation: bounce-flip1 4s infinite;
+}
+
+/* Keyframes for bounce and flip animation */
+@keyframes bounce-flip1 {
+
+  0%,
+  40%,
+  100% {
+    transform: translateY(-10px) rotate(0deg) scaleX(1);
+    animation-timing-function: ease-out;
+    -webkit-transform: translateY(-10px) rotate(0deg) scaleX(1);
+    -moz-transform: translateY(-10px) rotate(0deg) scaleX(1);
+    -ms-transform: translateY(-10px) rotate(0deg) scaleX(1);
+    -o-transform: translateY(-10px) rotate(0deg) scaleX(1);
+  }
+
+  5%,
+  45% {
+    transform: translateY(0) scaleX(1.1);
+    -webkit-transform: translateY(0) scaleX(1.1);
+    -moz-transform: translateY(0) scaleX(1.1);
+    -ms-transform: translateY(0) scaleX(1.1);
+    -o-transform: translateY(0) scaleX(1.1);
+  }
+
+  20% {
+    transform: translateY(-100px) rotate(0deg);
+    -webkit-transform: translateY(-100px) rotate(0deg);
+    -moz-transform: translateY(-100px) rotate(0deg);
+    -ms-transform: translateY(-100px) rotate(0deg);
+    -o-transform: translateY(-100px) rotate(0deg);
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    transform: translateY(-100px) rotate(360deg);
+    -webkit-transform: translateY(-100px) rotate(360deg);
+    -moz-transform: translateY(-100px) rotate(360deg);
+    -ms-transform: translateY(-100px) rotate(360deg);
+    -o-transform: translateY(-100px) rotate(360deg);
+    animation-timing-function: ease-in;
+  }
+}
+
+/* Adding delays for each image bounce-flip animation */
+.delay-1 {
+  animation-delay: -0s;
+  /* No delay for the first image */
+}
+
+.delay-2 {
+  animation-delay: -0.5s;
+  /* 0.5-second delay for the second image */
+}
+
+.delay-3 {
+  animation-delay: -1s;
+  /* 1-second delay for the third image */
+}
+
+.delay-4 {
+  animation-delay: -1.5s;
+  /* 1.5-second delay for the fourth image */
+}
+
+
+
+
+
+.music-photo {
+  box-shadow: 0px 0px 50px black;
+}
+
+.music-album {
+  box-shadow: -5px -5px 0px 5px rgba(0, 0, 0, 0.5), 5px 5px 0px 5px #e34b85;
+}
+
+.animate-zoom-in-out {
+  animation: zoom-in-out 2s infinite linear;
+  -webkit-animation: zoom-in-out 2s infinite linear;
+}
+
+@keyframes zoom-in-out {
+
+  0%,
+  100% {
+    scale: 2;
+  }
+
+  50% {
+    scale: 1;
+  }
+}
+
+.animate-rotate {
+  animation-name: animate-rotate;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.delay-2s {
+  animation-delay: -2s;
+}
+
+@keyframes animate-rotate {
+
+  0%,
+  100% {
+    transform: translateX(-25px) rotate(-12deg);
+    -webkit-transform: translateX(-25px) rotate(-12deg);
+    -moz-transform: translateX(-25px) rotate(-12deg);
+    -ms-transform: translateX(-25px) rotate(-12deg);
+    -o-transform: translateX(-25px) rotate(-12deg);
+  }
+
+  50% {
+    transform: translateX(25px) rotate(12deg);
+    -webkit-transform: translateX(25px) rotate(12deg);
+    -moz-transform: translateX(25px) rotate(12deg);
+    -ms-transform: translateX(25px) rotate(12deg);
+    -o-transform: translateX(25px) rotate(12deg);
+  }
 }

@@ -1,121 +1,109 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { TbArrowBackUp, TbCircleArrowLeft, TbCircleArrowRight } from 'react-icons/tb';
+import React, { useEffect, useState } from 'react'
+import { TbArrowBackUp } from 'react-icons/tb';
+import HTMLFlipBook from 'react-pageflip'
 
 const MailSection = ({ handleCloseSection }) => {
-
   const [isRendered, setIsRendered] = useState(false);
-  const [mailIndex, setMailIndex] = useState(0);
-  const [displayText, setDisplayText] = useState('');
-  const intervalRef = useRef(null);
-  const [mails, setMails] = useState([
-    {
-      'upper': 'Dear. Swan',
-      'text': `You remind me of the full moon, which looks ordinary but becomes amazing when you observe it for a long time. It turns darkness into light and gives direction. Honestly, only you can keep me company when I can't sleep.`,
-      'lower': '-yourLove'
-    },
-    {
-      'upper': 'Dear. Swet',
-      'text': `You remind me of the full moon, which looks ordinary but amazing.`,
-      'lower': '-yourLove'
-    },
-  ]
-  )
 
 
   useEffect(() => {
-    // Trigger the translation after the component mounts
     setIsRendered(true);
-    // Clear any existing interval
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-
-    setMailIndex(mailIndex);
-    setDisplayText('');
-    let currentIndex = -1;
-
-    const typeWriterEffect = () => {
-      if (currentIndex < mails[mailIndex].text.length) {
-        setDisplayText((prev) => prev + mails[mailIndex].text[currentIndex]);
-        currentIndex++;
-      } else {
-        return () => {
-          clearInterval(intervalRef.current); // Clear interval when done
-        }
-      }
-    };
-
-    // Start the interval
-    intervalRef.current = setInterval(typeWriterEffect, 30);
-
-    return () => {
-      clearInterval(intervalRef.current);
-    }
   }, []);
 
-  const stopTypewriterEffect = () => {
-    clearInterval(intervalRef.current);
-    setDisplayText(mails[mailIndex].text)
-  }
-
-  const handleTypeWriterEffect = (valueMailIndex) => {
-    // Clear any existing interval
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-
-    setMailIndex(valueMailIndex);
-    setDisplayText('');
-    let currentIndex = -1;
-
-    const typeWriterEffect = () => {
-      if (currentIndex < mails[valueMailIndex].text.length) {
-        setDisplayText((prev) => prev + mails[valueMailIndex].text[currentIndex]);
-        currentIndex++;
-      } else {
-        clearInterval(intervalRef.current); // Clear interval when done
-      }
-    };
-
-    // Start the interval
-    intervalRef.current = setInterval(typeWriterEffect, 30);
-  }
 
   return (
-    <div className='absolute w-full min-h-screen bg-black bg-opacity-70 z-30 flex justify-center items-center backdrop-blur-sm'>
-      <button className='absolute top-14 left-14 hidden md:block' onClick={() => handleCloseSection(handleCloseSection)}>
+    <div className='absolute z-50 w-screen min-h-screen flex items-center justify-center'>
+      <button className='absolute top-14 left-14 z-50' onClick={() => handleCloseSection(handleCloseSection)}>
         <TbArrowBackUp className='text-white w-10 h-10' />
       </button>
 
-      <button
-        onClick={() => handleCloseSection(handleCloseSection)}
-        className={`${isRendered ? "-translate-y-48 md:translate-y-0 md:-translate-x-96" : ""
-          } absolute flex justify-center items-center md:scale-150 w-40 h-40 active:opacity-90 duration-300`}
-      >
-        <img src="img/mail.png" className="w-14 z-20 translate-x-1" />
-        <img src="img/menu_button.webp" className="absolute w-32" />
-      </button>
-      <button className='relative md:scale-150' onClick={stopTypewriterEffect}>
-        <img src="img/love_box.webp" alt="" className='w-96 bg-cover left-0 top-0 -z-10' />
-        <div className='w-full h-full max-h-36 flex flex-col z-20 absolute px-14 top-20'>
-          <span className='text-sm font-semibold italic'>{mails[mailIndex].upper}</span>
-          <span className='text-xs font-semibold text-left'>{displayText}</span>
-          <span className='text-sm absolute left-0 bottom-0 w-full text-right pr-14 font-semibold italic'>{mails[mailIndex].lower}</span>
+      <div className='absolute top-0 left-0 w-screen min-h-screen bg-black bg-opacity-70 backdrop-blur-2xl'></div>
+      <BookResponsive>
+        {/* 1 */}
+        <div className='relative overflow-hidden bg-green-800 rounded-l-xl'>
+          <div className='absolute w-[200%] top-0 left-0 h-full flex items-center'>
+            <img src="./img/mail/buku/halaman1.png" alt="" className='w-full h-full' />
+          </div>
         </div>
-      </button>
-      <div className='absolute translate-y-44 md:translate-y-0 md:translate-x-96 md:scale-150 text-[rgb(243,215,212)]'>
-        {mailIndex > 0 &&
-          <button onClick={() => handleTypeWriterEffect(mailIndex - 1)} className='active:opacity-80'>
-            <TbCircleArrowLeft className='w-16 h-16' />
-          </button>}
-        {mailIndex < (mails.length - 1) &&
-          <button onClick={() => handleTypeWriterEffect(mailIndex + 1)} className='active:opacity-80'>
-            <TbCircleArrowRight className='w-16 h-16' />
-          </button>
-        }
-      </div>
+        <div className='relative overflow-hidden bg-green-800 rounded-r-xl'>
+          <div className='absolute w-[200%] top-0 -left-full h-full flex items-center'>
+            <img src="./img/mail/buku/halaman1.png" alt="" className='w-full bg-right h-full' />
+          </div>
+        </div>
+        {/* 2 */}
+        <div className='relative overflow-hidden bg-blue-900 rounded-l-xl'>
+          <div className='absolute w-[200%] top-0 left-0 h-full flex items-center'>
+            <img src="./img/mail/buku/halaman2.png" alt="" className='w-full h-full' />
+          </div>
+        </div>
+        <div className='relative overflow-hidden bg-blue-900 rounded-r-xl'>
+          <div className='absolute w-[200%] top-0 -left-full h-full flex items-center'>
+            <img src="./img/mail/buku/halaman2.png" alt="" className='w-full bg-right h-full' />
+          </div>
+        </div>
+        {/* 3 */}
+        <div className='relative overflow-hidden bg-blue-950 rounded-l-xl'>
+          <div className='absolute w-[200%] top-0 left-0 h-full flex items-center'>
+            <img src="./img/mail/buku/halaman3.png" alt="" className='w-full h-full' />
+          </div>
+        </div>
+        <div className='relative overflow-hidden bg-blue-950 rounded-r-xl'>
+          <div className='absolute w-[200%] top-0 -left-full h-full flex items-center'>
+            <img src="./img/mail/buku/halaman3.png" alt="" className='w-full bg-right h-full' />
+          </div>
+        </div>
+        {/* 4 */}
+        <div className='relative overflow-hidden bg-yellow-900 rounded-l-xl'>
+          <div className='absolute w-[200%] top-0 left-0 h-full flex items-center'>
+            <img src="./img/mail/buku/halaman4.png" alt="" className='w-full h-full' />
+          </div>
+        </div>
+        <div className='relative overflow-hidden bg-yellow-900 rounded-r-xl'>
+          <div className='absolute w-[200%] top-0 -left-full h-full flex items-center'>
+            <img src="./img/mail/buku/halaman4.png" alt="" className='w-full bg-right h-full' />
+          </div>
+        </div>
+        {/* 5 */}
+        <div className='relative overflow-hidden bg-pink-300 rounded-l-xl'>
+          <div className='absolute w-[200%] top-0 left-0 h-full flex items-center'>
+            <img src="./img/mail/buku/halaman5.png" alt="" className='w-full h-full' />
+          </div>
+        </div>
+        <div className='relative overflow-hidden bg-pink-300 rounded-r-xl'>
+          <div className='absolute w-[200%] top-0 -left-full h-full flex items-center'>
+            <img src="./img/mail/buku/halaman5.png" alt="" className='w-full bg-right h-full' />
+          </div>
+        </div>
+        {/* 6 */}
+        <div className='relative overflow-hidden bg-cyan-700 rounded-l-xl'>
+          <div className='absolute w-[200%] top-0 left-0 h-full flex items-center'>
+            <img src="./img/mail/buku/halaman6.png" alt="" className='w-full h-full' />
+          </div>
+        </div>
+        <div className='relative overflow-hidden bg-cyan-700 rounded-r-xl'>
+          <div className='absolute w-[200%] top-0 -left-full h-full flex items-center'>
+            <img src="./img/mail/buku/halaman6.png" alt="" className='w-full bg-right h-full' />
+          </div>
+        </div>
+      </BookResponsive>
+
     </div>
   )
 }
+
+const BookResponsive = ({ children }) => (
+  <>
+    <div className='hidden md:flex w-full justify-center'>
+      <HTMLFlipBook width={400} height={300} showCover={false}>
+        {children}
+      </HTMLFlipBook>
+    </div>
+    <div className=' w-full h-[75vw] flex justify-center absolute md:hidden'>
+      <HTMLFlipBook width={150} height={112.5} usePortrait={false} showCover={false}>
+        {children}
+      </HTMLFlipBook>
+    </div>
+  </>
+)
 
 export default MailSection

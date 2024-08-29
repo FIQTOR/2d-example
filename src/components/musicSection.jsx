@@ -1,221 +1,260 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { TbArrowBackUp, TbCircleArrowLeft, TbCircleArrowRight, TbPlayerPauseFilled, TbPlayerPlay, TbPlayerPlayFilled, TbVolume, TbVolume2, TbX } from 'react-icons/tb'
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-
-import { Navigation } from 'swiper/modules';
+import { TbArrowBackUp, TbPlayerPlay, TbPlayerPlayFilled } from 'react-icons/tb'
 
 const MusicSection = ({ handleCloseSection }) => {
-  const [isRendered, setIsRendered] = useState(false);
-  const swiperRef = useRef(null);
-  const nextButtonRef = useRef(null);
-  const prevButtonRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
 
-  // Audio State
+  const [blink, setBlink] = useState(false);
+
+  const [showPlayingSection, setShowPlayingSection] = useState(false);
+  const [musicText, setMusicText] = useState('empty');
+  const [musicTitle, setMusicTitle] = useState('empty');
+  const [musicSource, setMusicSource] = useState('empty');
+  const [musicStart, setMusicStart] = useState(0);
+  const [musicEnd, setMusicEnd] = useState(0);
+
+  const musics = [
+    {
+      'vocalist': 'Keshi',
+      'title': 'UNDERSTAND',
+      'musicSrc': 'music/Bernadya - Untungnya, Hidup Harus Tetap Berjalan.mp3',
+      'text': 'Tough days ive been trough',
+      'musicStart': 40,
+      'musicEnd': 60,
+    },
+    {
+      'vocalist': 'Bernadya',
+      'title': 'Untungnya bumi masih berputar',
+      'musicSrc': 'music/Bernadya - Untungnya, Hidup Harus Tetap Berjalan.mp3',
+      'text': 'luckily i survived',
+      'musicStart': 40,
+      'musicEnd': 60,
+    },
+    {
+      'vocalist': 'All gatie',
+      'title': 'Its You',
+      'musicSrc': 'music/Bernadya - Untungnya, Hidup Harus Tetap Berjalan.mp3',
+      'text': '"hal hal baik yang datangnya belakangan" is when i met you',
+      'musicStart': 40,
+      'musicEnd': 60,
+    },
+  ]
+
+  useEffect(() => {
+    // Delay the scroll to ensure it works on all devices
+    setTimeout(() => {
+      handleBlink();
+    }, 0);
+  }, [])
+
+  const handleBlink = () => {
+    setInterval(() => {
+      setBlink(true);
+      setTimeout(() => {
+        setBlink(false);
+      }, 500);
+    }, 2000);
+  };
+
+  const handleShowPlayingSection = (title, musicSrc, text, mStart, mEnd) => {
+    setShowPlayingSection(true);
+    setMusicTitle(title)
+    setMusicSource(musicSrc)
+    setMusicText(text)
+    setMusicStart(mStart)
+    setMusicEnd(mEnd)
+  }
+
+  return (
+    <div className='absolute w-full min-h-screen bg-[rgba(238,99,160)] z-50'>
+      <button className='absolute top-14 left-14 z-50' onClick={() => handleCloseSection(handleCloseSection)}>
+        <TbArrowBackUp className='text-white w-10 h-10' />
+      </button>
+      <img src="img/music/wave-top-left.png" alt="" className='absolute -top-[800px] -left-60 unselectable' />
+      <img src="img/music/wave-bottom-right.png" alt="" className='absolute -bottom-[800px] -right-60 unselectable' />
+
+      <div className='absolute w-full min-h-screen flex justify-center items-center z-10'>
+        {/* Album */}
+        <div className='grid grid-cols-3 gap-14 translate-y-14  '>
+          <div className='w-72 h-28 bg-[#ce4177] rounded-md music-album p-2 flex gap-2'>
+            <img src="./img/music/album/album1.png" alt="" className='h-full aspect-square' />
+            <div className='flex flex-col text-sm font-bold w-full'>
+              <span className='font-light'>{musics[0].title}</span>
+              <span className='text-white'>{musics[0].vocalist}</span>
+              <div className='h-full flex items-end w-full justify-center'>
+                <button className='bg-black p-2 rounded-full' onClick={() => handleShowPlayingSection(`${musics[0].vocalist} - ${musics[0].title}`, `${musics[0].musicSrc}`, `${musics[0].text}`, musics[0].musicStart, musics[0].musicEnd)}>
+                  <TbPlayerPlayFilled className='w-3 h-3 text-[#ce4177]' />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className='w-72 h-28 bg-[#ce4177] rounded-md music-album p-2 flex gap-2'>
+            <img src="./img/music/album/album2.png" alt="" className='h-full aspect-square' />
+            <div className='flex flex-col text-sm font-bold w-full'>
+              <span className='font-light'>{musics[1].title}</span>
+              <span className='text-white'>{musics[1].vocalist}</span>
+              <div className='h-full flex items-end w-full justify-center'>
+                <button className='bg-black p-2 rounded-full' onClick={() => handleShowPlayingSection(`${musics[1].vocalist} - ${musics[1].title}`, `${musics[1].musicSrc}`, `${musics[1].text}`, musics[1].musicStart, musics[1].musicEnd)}>
+                  <TbPlayerPlayFilled className='w-3 h-3 text-[#ce4177]' />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className='w-72 h-28 bg-[#ce4177] rounded-md music-album p-2 flex gap-2'>
+            <img src="./img/music/album/album2.png" alt="" className='h-full aspect-square' />
+            <div className='flex flex-col text-sm font-bold w-full'>
+              <span className='font-light'>{musics[2].title}</span>
+              <span className='text-white'>{musics[2].vocalist}</span>
+              <div className='h-full flex items-end w-full justify-center'>
+                <button className='bg-black p-2 rounded-full' onClick={() => handleShowPlayingSection(`${musics[2].vocalist} - ${musics[2].title}`, `${musics[2].musicSrc}`, `${musics[2].text}`, musics[2].musicStart, musics[2].musicEnd)}>
+                  <TbPlayerPlayFilled className='w-3 h-3 text-[#ce4177]' />
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div className='absolute grid grid-cols-2 w-72 -translate-y-48 music-photo'>
+          <img src="./img/music/photo/image1.png" alt="" />
+          <img src="./img/music/photo/image2.png" alt="" />
+          <img src="./img/music/photo/image3.png" alt="" />
+          <img src="./img/music/photo/image4.png" alt="" />
+        </div>
+
+        <img src="./img/music/musiceffect.png" alt="" className='absolute top-24 right-7 w-36 love' />
+        <img src="./img/music/star.png" alt="" className='absolute top-14 right-72 w-28 h-28/' />
+        <img src="./img/music/3star.png" alt="" className='absolute bottom-24 left-80 w-20 ribbon-shake' />
+        <div className='absolute top-28 right-28 rotate-12 text-center text-4xl'>
+          <span className='absolute font-bold w-max  text-center font-chewy text-[#fc7397]'>PLAYLIST FOR <br /> YOU!!!</span>
+          <span className='absolute -top-1 left-[1px] w-max font-bold font-chewy text-transparent splice-text'>PLAYLIST FOR <br /> YOU!!!</span>
+        </div>
+
+
+        <img src="./img/music/flower.png" alt="" className='absolute bottom-32 left-14 w-20 ribbon-shake delay-3' />
+        <img src="./img/music/3star.png" alt="" className='absolute bottom-24 left-80 w-20 ribbon-shake' />
+        <div className='absolute bottom-28 left-28 -rotate-12 text-center text-4xl'>
+          <span className='absolute font-bold w-max  text-center font-chewy text-[#fc7397]'>IT REMINDS ME TO <br /> YOU</span>
+          <span className='absolute top-0 left-[1px] w-max font-bold font-chewy text-transparent splice-text'>IT REMINDS ME TO <br /> YOU</span>
+        </div>
+
+        <img src="img/happyface.png" alt="" className='absolute w-96 top-20 left-52 animate-rotate' />
+      </div>
+
+      <div className='absolute scale-75 w-64 h-48 flex flex-col items-center justify-center bottom-7 rotate-12 right-32 z-10'>
+        <img src="img/blankface.png" alt="" className='w-full h-full absolute z-20 left-0 top-0 ' />
+        <div className="h-[150px] absolute flex items-center gap-7 z-20 -translate-y-7">
+          <img src="img/music/loveeye.png" alt="" className='w-10 h-10 animate-zoom-in-out' />
+          <img src="img/music/loveeye.png" alt="" className='w-10 h-10 animate-zoom-in-out' />
+        </div>
+        <div className='relative left-0 z-20 translate-y-5'>
+          <img src="img/love.webp" className="w-10 aspect-square breathe " />
+        </div>
+        <div className="absolute flex gap-10 z-20 translate-y-5">
+          <img src="img/left_mustache.png" className="w-20 h-10 breathe " />
+          <img src="img/right_mustache.png" className="w-20 h-10 breathe " />
+        </div>
+        <div className="absolute z-20 translate-y-14">
+          <img
+            src="img/mouth.png"
+            className="w-16 h-auto"
+          />
+        </div>
+      </div>
+
+      <div className='absolute w-full min-h-screen bg-black bg-opacity-40'></div>
+      {showPlayingSection && <MusicPlayingSection title={musicTitle} text={musicText} musicSrc={musicSource} musicStart={musicStart} musicEnd={musicEnd} handleClose={setShowPlayingSection} />}
+    </div>
+  )
+}
+
+const MusicPlayingSection = ({ title, text, musicSrc, musicStart, musicEnd, handleClose }) => {
+  const [isRendered, setIsRendered] = useState(false);
+  const [isShrinking, setIsShrinking] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const audioRef = useRef(null);
+
+  const START_TIME = musicStart; // Start time in seconds
+  const END_TIME = musicEnd;   // End time in seconds
 
   useEffect(() => {
     setIsRendered(true);
 
-    if (swiperRef.current) {
-      // swiperRef.current.slideTo(0.5, 0, false);
-      swiperRef.current.params.navigation.nextEl = nextButtonRef.current;
-      swiperRef.current.params.navigation.prevEl = prevButtonRef.current;
-
-      // Reinitialize navigation
-      swiperRef.current.navigation.init();
-      swiperRef.current.navigation.update();
-    }
-  }, [])
-
-
-  const [musicIndex, setMusicIndex] = useState(null);
-  const handleOpenSong = (musicIndex) => {
-    setMusicIndex(musicIndex)
-  }
-
-
-
-  return (
-
-    <div className='absolute w-full min-h-screen bg-black bg-opacity-70 z-30 flex justify-center items-center backdrop-blur-sm'>
-
-      <button
-        onClick={() => handleCloseSection()}
-        className={`${isRendered ? "top-7" : ""
-          } absolute flex justify-center items-center w-40 h-40 active:opacity-90 duration-300 z-20`}
-      >
-        <img src="img/music.png" className="w-10 z-20 translate-x-1" />
-        <img src="img/menu_button.webp" className="absolute w-32" />
-      </button>
-
-      <div className="relative w-full min-h-screen flex justify-center text-white">
-        <Swiper
-          spaceBetween={0}
-          slidesPerView={1}
-
-          modules={[Navigation]}
-          onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-          effect='navigation'
-          className='flex items-center justify-center'
-        >
-          {Song(musicIndex, 0, 'music/2796268-uhd_3840_2160_25fps.mp4', handleOpenSong)}
-          {Song(musicIndex, 1, 'music/2796268-uhd_3840_2160_25fps.mp4', handleOpenSong)}
-          {Song(musicIndex, 2, 'music/2796268-uhd_3840_2160_25fps.mp4', handleOpenSong)}
-          {Song(musicIndex, 3, 'music/2796268-uhd_3840_2160_25fps.mp4', handleOpenSong)}
-          {Song(musicIndex, 4, 'music/2796268-uhd_3840_2160_25fps.mp4', handleOpenSong)}
-          {Song(musicIndex, 5, 'music/2796268-uhd_3840_2160_25fps.mp4', handleOpenSong)}
-        </Swiper>
-
-        {musicIndex !== null && <button onClick={() => setMusicIndex(null)} className='z-50 absolute top-7 right-7'>
-          <TbX className="w-7 h-7" />
-        </button>}
-      </div>
-      <button
-        ref={nextButtonRef}
-        className={`${(musicIndex !== null || activeIndex >= (swiperRef.current?.slides.length - 1)) && 'hidden'} z-50 absolute right-4 md:right-14 text-white`}
-      >
-        <TbCircleArrowRight className='w-14 md:w-20 h-14 md:h-20' />
-      </button>
-      <button
-        ref={prevButtonRef}
-        className={`${(musicIndex !== null || activeIndex <= 0) && 'hidden'} z-50 absolute left-4 md:left-14 text-white`}
-      >
-        <TbCircleArrowLeft className='w-14 md:w-20 h-14 md:h-20' />
-      </button>
-      {
-        musicIndex === null &&
-        <>
-          <button className='absolute top-14 left-14 z-50' onClick={() => handleCloseSection(handleCloseSection)}>
-            <TbArrowBackUp className='text-white w-10 h-10 z-50' />
-          </button>
-        </>
-      }
-    </div >
-  )
-}
-const formatTime = (time) => {
-  const minutes = Math.floor(time / 60);
-  const seconds = Math.floor(time % 60);
-  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-};
-
-const Song = (musicIndex, index, audioSource, handleOpenSong) => {
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(0.5); // Default volume to 50%
-  const audioRef = useRef(null);
-
-  const handlePlaySong = () => {
     const audio = audioRef.current;
-    if (audio.paused) {
-      audio.play();
-      setIsPlaying(true)
-    } else {
-      audio.pause();
-      setIsPlaying(false)
+
+    const handleTimeUpdate = () => {
+      if (audio.currentTime >= END_TIME) {
+        setIsShrinking(true);
+        audio.pause();
+      } else {
+        setCurrentTime(audio.currentTime);
+      }
+    };
+
+    audio.addEventListener('timeupdate', handleTimeUpdate);
+
+    // Start the audio at the specified start time
+    audio.currentTime = START_TIME;
+
+    return () => {
+      audio.removeEventListener('timeupdate', handleTimeUpdate);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isShrinking) {
+      const timeoutId = setTimeout(() => {
+        handleClose();
+      }, 3000); // Match the duration of the shrinking animation
+
+      return () => clearTimeout(timeoutId);
     }
-  };
+  }, [isShrinking, handleClose]);
 
-  const handleTimeChange = (e) => {
-    const newTime = e.target.value;
-    setCurrentTime(newTime);
+  const handleSliderChange = (e) => {
+    const newTime = (e.target.value / 100) * (END_TIME - START_TIME) + START_TIME;
     audioRef.current.currentTime = newTime;
+    setCurrentTime(newTime);
   };
 
-  const handleVolumeChange = (e) => {
-    const newVolume = e.target.value;
-    setVolume(newVolume);
-    audioRef.current.volume = newVolume;
-  };
-
-  const handleLoadedMetadata = () => {
-    setDuration(audioRef.current.duration);
+  const handlePlay = () => {
+    audioRef.current.play();
   };
 
   return (
-    <>
-      <SwiperSlide key={index} className={`h-full w-fit justify-center items-center overflow-visible`} style={{
-        display: 'flex'
-      }}>
-        <div className={`${musicIndex === index ? 'scale-150 md:scale-[2.5]' : `scale-100 md:scale-[2]`} w-[60%] bg-black bg-opacity-30 p-[5%] md:p-2 max-w-96 md:max-w-32 md:rounded-lg  rounded-3xl duration-1000 z-10`}>
-          <img src="img/taylor_swift.png" alt="" className='w-full rounded-2xl md:rounded-md' />
-          <div className='w-full flex flex-col gap-2 md:gap-px py-4 md:py-2 items-center'>
-            <span className='font-bold text-xl mt-2 md:mt-0 md:text-xs'>Wide Awake</span>
-            {musicIndex === null ?
-              <button onClick={() => handleOpenSong(index)}>
-                <TbPlayerPlayFilled className="md:w-5 w-14 md:h-5 h-14" />
-              </button>
-              :
-              <>
-                {musicIndex === index &&
-                  <audio
-                    ref={audioRef}
-                    src="music/Katy Perry  Wide Awake.mp3"
-                    autoPlay
-                    onLoadedMetadata={handleLoadedMetadata}
-                    onTimeUpdate={() => setCurrentTime(audioRef.current.currentTime)}
-                  ></audio>
-                }
-                <div>
-                  <input
-                    type="range"
-                    value={currentTime}
-                    max={duration}
-                    className="w-full h-1 rounded-lg appearance-none bg-white"
-                    onChange={handleTimeChange}
-                    style={{
-                      background: `linear-gradient(to right, #fff ${(
-                        (currentTime / duration) *
-                        100
-                      ).toFixed(2)}%, #535353 ${(
-                        (currentTime / duration) *
-                        100
-                      ).toFixed(2)}%)`,
-                    }}
-                  />
-                </div>
-                <div className="w-full flex justify-between mt-2 md:mt-0">
-                  <span className="text-[8px]">{formatTime(currentTime)}</span>
-                  <button onClick={handlePlaySong}>
-                    {isPlaying ?
-                      <TbPlayerPauseFilled className="w-6 h-6 text-white" /> :
-                      <TbPlayerPlayFilled className="w-6 h-6 text-white" />}
-                  </button>
-                  <span className="text-[8px]">-{formatTime(duration - currentTime)}</span>
-                </div>
-                <div className="flex items-center gap-2 mt-2 md:mt-0">
-                  <TbVolume2 />
-                  <input
-                    type="range"
-                    value={volume}
-                    min="0"
-                    max="1"
-                    step="0.01"
-                    className="w-full h-1 rounded-lg appearance-none bg-white"
-                    onChange={handleVolumeChange}
-                    style={{
-                      background: `linear-gradient(to right, #fff ${(
-                        volume * 100
-                      ).toFixed(2)}%, #535353 ${(volume * 100).toFixed(2)}%)`,
-                    }}
-                  />
-                  <TbVolume />
-                </div>
-              </>
-            }
-          </div>
-        </div>
-      </SwiperSlide >
-    </>
-  )
-}
+    <div className='absolute top-0 left-0 w-screen h-screen z-20 flex justify-center items-center'>
+      <div className='absolute top-0 left-0 w-full h-screen bg-black bg-opacity-70 backdrop-blur-xl'></div>
+
+      <div className={`w-96 h-80 relative z-10 flex items-center  justify-center ${isRendered && !isShrinking ? 'scale-100' : 'scale-0'} duration-[3s]`}>
+        <img src="./img/music/box.png" alt="" className='w-full bg-cover -z-10' />
+        <span className='absolute -translate-y-4 text-white text-3xl text-center max-w-56 font-chewy'>{text}</span>
+        <span className='absolute top-[285px] text-lg max-w-80 leading-5 left-4 font-josefinssans'>{title}</span>
+      </div>
+
+      <audio ref={audioRef} src={musicSrc} autoPlay onPlay={handlePlay}></audio>
+
+      {/* decoration */}
+      <img src="./img/music/musiceffect.png" alt="" className='absolute top-24 left-80 w-36 love' />
+      <img src="./img/music/musiceffect.png" alt="" className='absolute delay-2 top-48 right-80 w-36 love' />
+
+      <img src="img/happyface.png" alt="" className='absolute w-96 top-64 left-40 animate-rotate delay-2s' />
+      <img src="img/happyface.png" alt="" className='absolute w-96 top-72 left-56 animate-rotate' />
+
+      <img src="img/happyface.png" alt="" className='absolute w-96 top-80 right-64 animate-rotate delay-2s' />
+      <img src="img/happyface.png" alt="" className='absolute w-96 top-96 right-80 animate-rotate' />
+
+      {/* Slider */}
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value={((currentTime - START_TIME) / (END_TIME - START_TIME)) * 100}
+        onChange={handleSliderChange}
+        className="absolute bottom-10 w-64"
+      />
+    </div>
+  );
+};
 
 export default MusicSection
