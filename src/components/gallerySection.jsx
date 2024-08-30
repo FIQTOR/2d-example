@@ -119,7 +119,7 @@ const FirstPage = ({ handleNext, handleCloseSection }) => {
         </div>
       </div>
       <div className='absolute w-[710px] h-20 bg-black rounded-[100%] blur-2xl -z-20 left-40 bottom-24'></div>
-      <button onClick={stopTypewriterEffect} className='absolute z-20 md:scale-150 translate-x-96 -translate-y-20 font-[Fredoka]'>
+      <button onClick={stopTypewriterEffect} className='absolute z-20 md:scale-150 translate-x-96 -translate-y-20 font-fredoka text-[#702c2b]'>
         <img src='img/mail_box.webp' alt='' className='w-[480px]' />
         <div className='absolute top-[8px] left-24'>
           <span className='font-bold text-white text-xl'>FOR </span>
@@ -132,7 +132,6 @@ const FirstPage = ({ handleNext, handleCloseSection }) => {
 };
 
 const SecondPage = ({ SetState, handleCloseSection }) => {
-  const [isRendered, setIsRendered] = useState(false);
   const [mailIndex, setMailIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const intervalRef = useRef(null);
@@ -206,7 +205,6 @@ const SecondPage = ({ SetState, handleCloseSection }) => {
   };
 
   useEffect(() => {
-    setIsRendered(true);
     handleTypeWriterEffect(0);
 
 
@@ -254,37 +252,9 @@ const SecondPage = ({ SetState, handleCloseSection }) => {
   }, [mailIndex]); // Dependency on mailIndex to trigger the effect when it changes  
 
   if (mailIndex > 0) {
-    return (
-      <div className='absolute bg-[rgba(238,99,160)] flex justify-center items-center w-full min-h-screen z-30 gap-10'>
-        <button className='absolute top-14 left-14 hidden md:block' onClick={() => handleMailIndex(0)}>
-          <TbArrowBackUp className='text-white w-10 h-10' />
-        </button>
-        <div className='w-[600px] h-full flex items-center rounded-2xl overflow-hidden'>
-          <img src={mails[mailIndex]?.image} alt="" />
-        </div>
-        <div className='absolute -z-10 -translate-y-32 left-10 -rotate-[30deg]'>
-          <img src="img/normalface.png" alt="" className='w-[350px] breathe' />
-        </div>
-        <div className='absolute -z-10 -translate-y-60 right-20 rotate-[30deg]'>
-          <img src="img/normalface.png" alt="" className='w-[350px] breathe' />
-        </div>
-        <button
-          className='text-white p-2 rounded w-[650px] flex'
-        >
-          <div className='absolute -z-10 translate-x-3 -translate-y-3'>
-            <img src="img/gallery_box_1.webp" alt="" className='w-[650px]' />
-          </div>
-          <div className='flex items-center justify-center'>
-            <img src="img/gallery_box_2.webp" alt="" className='w-[650px]' />
-            <span className={`${isRendered ? '' : ''}absolute -translate-y-32 font-bold text-6xl text-[#EE63A0] font-[introhead]`}>{mails[mailIndex]?.title}</span>
-            <span className='absolute w-[500px] font-[Fredoka] text-3xl text-black font-semibold'>{displayText}</span>
-            <span className='absolute translate-y-32 translate-x-40 font-bold text-5xl text-[#EE63A0] font-[introhead]'>{mails[mailIndex]?.date}</span>
-          </div>
-
-
-        </button>
-      </div>
-    )
+    return <>
+      <ShowPhoto mail={mails[mailIndex]} handleMailIndex={handleMailIndex} />
+    </>
   }
 
 
@@ -295,8 +265,11 @@ const SecondPage = ({ SetState, handleCloseSection }) => {
       </button>
       <img src="img/wave2.png" alt="" className='absolute -z-10 -top-[42rem] -left-[38rem]' />
       <img src="img/wave3.png" alt="" className='absolute -z-10 -bottom-[40rem] -right-[60rem]' />
+      <img src="img/gallery/wave-top-left.png" alt="" className='absolute -top-[650px] -left-[600px] unselectable -z-10' />
+      <img src="img/music/wave-bottom-right.png" alt="" className='absolute -bottom-[800px] -right-60 unselectable -z-10' />
+
       <div className='w-full h-full flex justify-center gap-10'>
-        <button onClick={stopTypewriterEffect} className=' font-[Fredoka]'>
+        <button onClick={stopTypewriterEffect} className='font-fredoka text-[#702c2b]'>
           <img src="img/splash2.png" alt="" className='absolute -z-10 -translate-x-40 -translate-y-60 scale-[.72]' />
           <div className='breathe'>
             <img src="img/cloud.png" alt="" className='absolute w-40 translate-x-[22rem] -translate-y-10 -scale-x-100' />
@@ -306,11 +279,11 @@ const SecondPage = ({ SetState, handleCloseSection }) => {
             <img src="img/heartgroup.png" alt="" className=' w-40 breathe' />
           </div>
           <div src='' alt='' className='w-[30rem] h-64 bg-[#F6A8CA] rounded-3xl p-4 flex items-center' >
-            <span className='w-[450px] absolute z-10 text-white text-3xl font-bold text-center'>{displayText}</span>
+            <span className='w-[450px] absolute z-10 text-white text-3xl font-bold'>{displayText}</span>
             <span className='w-[450px] absolute translate-x-1 translate-y-1 text-[#FC3A87] text-3xl font-bold text-center'>{displayText}</span>
           </div>
         </button>
-        <div className='grid grid-cols-2 gap-y-10 gap-x-14 justify-center items-center'>
+        <div className='grid grid-cols-2 gap-y-10 gap-x-14 justify-center items-center scale-75'>
           <img src="img/splash.png" alt="" className='absolute -z-20 -top-14 -translate-x-32 w-[950px]' />
           {/* Gallery Bellow */}
           <button className='bg-black w-96 h-96 rounded-3xl overflow-hidden' onClick={() => handleMailIndex(1)}>
@@ -343,5 +316,73 @@ const SecondPage = ({ SetState, handleCloseSection }) => {
     </div>
   )
 }
+
+const ShowPhoto = ({ mail, handleMailIndex }) => {
+  const [isRendered, setIsRendered] = useState(false)
+  const [displayText_, setDisplayText_] = useState('');
+  const [isFullTextDisplayed, setIsFullTextDisplayed] = useState(false);
+  const intervalRef = useRef(null);
+
+  useEffect(() => {
+    setIsRendered(true)
+    handleTypeWriterEffect();
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalRef.current);
+  }, []); // Re-run effect if `mail` changes
+
+  const handleTypeWriterEffect = () => {
+    clearInterval(intervalRef.current); // Clear any existing interval
+    setDisplayText_('');
+    setIsFullTextDisplayed(false)
+    let currentIndex = 0;
+
+    const typeWriterEffect = () => {
+      if (currentIndex < (mail?.text || '').length) {
+        setDisplayText_(mail.text.slice(0, currentIndex + 1));
+        currentIndex++;
+      } else {
+        clearInterval(intervalRef.current);
+        setIsFullTextDisplayed(true)
+      }
+    };
+
+    intervalRef.current = setInterval(typeWriterEffect, 30);
+  };
+
+  if (!mail) {
+    return null; // Early return if mail is undefined
+  }
+
+  return (
+    <div className='absolute bg-[rgba(238,99,160)] flex justify-center items-center w-full min-h-screen z-30 gap-10'>
+      <button className='absolute top-14 left-14 hidden md:block' onClick={() => handleMailIndex(0)}>
+        <TbArrowBackUp className='text-white w-10 h-10' />
+      </button>
+      <div className={`w-[600px] h-full flex items-center rounded-2xl overflow-hidden duration-300 ${isRendered ? 'scale-100' : 'scale-50 translate-x-96'}`}>
+        <img src={mail?.image} alt="" />
+      </div>
+      <div className='absolute -z-10 -translate-y-32 left-10 -rotate-[30deg]'>
+        <img src="img/normalface.png" alt="" className='w-[350px] breathe' />
+      </div>
+      <div className='absolute -z-10 -translate-y-60 right-20 rotate-[30deg]'>
+        <img src="img/normalface.png" alt="" className='w-[350px] breathe' />
+      </div>
+      <div className='text-white rounded w-[650px] flex relative'>
+        <div className='absolute -z-10 translate-x-3 -translate-y-3'>
+          <img src="img/gallery_box_1.webp" alt="" className='w-[650px]' />
+        </div>
+        <div className='flex items-center justify-center'>
+          <img src="img/gallery_box_2.webp" alt="" className='w-[650px]' />
+          <span className='absolute -translate-y-32 font-bold text-5xl font-introrust text-[#EE63A0] text-center'>{mail?.title}</span>
+          <span className='absolute -translate-y-[130px] -translate-x-1 font-introrust font-bold text-5xl text-[#EE63A0] text-transparent black-splice-text text-center'>{mail?.title}</span>
+          <span className='absolute w-[500px] font-fredoka text-[#702c2b] text-3xl font-semibold text-left'>{displayText_}</span>
+          <span className='absolute translate-y-32 translate-x-40 font-bold text-5xl text-[#EE63A0] font-introrust'>{mail?.date}</span>
+          <span className='absolute translate-y-32 translate-x-[156px] font-bold text-5xl text-[#EE63A0] font-introrust text-transparent black-splice-text'>{mail?.date}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default GallerySection

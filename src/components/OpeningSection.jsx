@@ -274,13 +274,13 @@ const SecondPage = ({ SetState, isVisible }) => {
       </div>
       <button onClick={handleSkip} className='absolute w-fit px-7 h-fit md:translate-x-72 md:-translate-y-32 z-40 flex items-center'>
         <img src="img/mail_box.webp" alt="" className='w-full md:w-[40vw]' />
-        <div className='absolute top-[5px] left-[25%] md:text-3xl  font-fredoka stroke-text'>
+        <div className='absolute top-[5px] left-[25%] md:text-3xl  font-fredoka'>
           <span className='font-bold text-white pr-2'>HAI</span>
           <span className='font-bold text-[#f6498c]'>NANA</span>
         </div>
         <span className='absolute left-[10%] text-4xl pr-[10%] font-bold text-center font-fredoka text-[#702c2b]'>{displayText}</span>
-        <img src="./img/music/star.png" alt="" className='absolute -top-7 left-0 w-20 h-20' />
-        <img src="./img/music/star.png" alt="" className='absolute -bottom-7 right-0 w-20 h-20' />
+        <img src="./img/music/star.png" alt="" className='absolute -top-7 left-0 w-20 h-20 breathe' />
+        <img src="./img/music/star.png" alt="" className='absolute -bottom-7 right-0 w-20 h-20 breathe' />
       </button>
     </div>
   );

@@ -22,6 +22,12 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'IntroRust';
+  src: url('./font/introrust.otf') format('truetype');
+  font-style: normal;
+}
+
 .font-fredoka {
   font-family: 'Fredoka', sans-serif;
 }
@@ -34,6 +40,10 @@
   font-family: 'JosefinsSans', sans-serif;
 }
 
+.font-introrust {
+  font-family: 'IntroRust', sans-serif;
+}
+
 .stroke-text {
   -webkit-text-stroke: 1px #a30d42;
 }
@@ -41,7 +51,12 @@
 .splice-text {
   -webkit-text-stroke: 1px #ff0063;
   /* Stroke width and color */
-  position: relative;
+  /* Offset the stroke 2px to the right */
+}
+
+.black-splice-text {
+  -webkit-text-stroke: 2px #000;
+  /* Stroke width and color */
   /* Offset the stroke 2px to the right */
 }
 

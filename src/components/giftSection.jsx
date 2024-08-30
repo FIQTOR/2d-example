@@ -115,7 +115,7 @@ const FirstPage = ({ handleNext, handleCloseSection }) => {
         </div>
       </div>
       <div className='absolute w-[710px] h-20 bg-black rounded-[100%] blur-2xl -z-20 left-40 bottom-24'></div>
-      <button onClick={stopTypewriterEffect} className='absolute z-20 md:scale-150 translate-x-96 -translate-y-20 font-fredoka text-[#702c2b]'>
+      <button onClick={stopTypewriterEffect} className='absolute z-20 translate-x-96 -translate-y-20 font-fredoka text-[#702c2b] scale-125'>
         <img src='img/mail_box.webp' alt='' className='w-[480px]' />
         <div className='absolute top-[8px] left-24'>
           <span className='font-bold text-white text-xl'>FOR </span>
@@ -125,7 +125,7 @@ const FirstPage = ({ handleNext, handleCloseSection }) => {
       </button>
 
       {mailIndex < mails.length && (
-        <div className='absolute w-full px-14 translate-x-96 translate-y-44 md:translate-y-48 justify-center flex flex-col md:flex-row gap-2 md:gap-7 font-fredoka text-[#702c2b] font-bold'>
+        <div className='absolute w-full px-14 translate-x-96 translate-y-44 md:translate-y-48 justify-center flex flex-col md:flex-row gap-2 md:gap-7 font-fredoka text-[#702c2b] font-bold scale-[80%]'>
           {/* Render buttons conditionally based on current mailIndex */}
           {mailIndex === 0 && (
             <>

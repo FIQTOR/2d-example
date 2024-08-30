@@ -78,7 +78,7 @@ const MusicSection = ({ handleCloseSection }) => {
           <div className='w-72 h-28 bg-[#ce4177] rounded-md music-album p-2 flex gap-2'>
             <img src="./img/music/album/album1.png" alt="" className='h-full aspect-square' />
             <div className='flex flex-col text-sm font-bold w-full'>
-              <span className='font-light'>{musics[0].title}</span>
+              <span>{musics[0].title}</span>
               <span className='text-white'>{musics[0].vocalist}</span>
               <div className='h-full flex items-end w-full justify-center'>
                 <button className='bg-black p-2 rounded-full' onClick={() => handleShowPlayingSection(`${musics[0].vocalist} - ${musics[0].title}`, `${musics[0].musicSrc}`, `${musics[0].text}`, musics[0].musicStart, musics[0].musicEnd)}>
@@ -91,7 +91,7 @@ const MusicSection = ({ handleCloseSection }) => {
           <div className='w-72 h-28 bg-[#ce4177] rounded-md music-album p-2 flex gap-2'>
             <img src="./img/music/album/album2.png" alt="" className='h-full aspect-square' />
             <div className='flex flex-col text-sm font-bold w-full'>
-              <span className='font-light'>{musics[1].title}</span>
+              <span>{musics[1].title}</span>
               <span className='text-white'>{musics[1].vocalist}</span>
               <div className='h-full flex items-end w-full justify-center'>
                 <button className='bg-black p-2 rounded-full' onClick={() => handleShowPlayingSection(`${musics[1].vocalist} - ${musics[1].title}`, `${musics[1].musicSrc}`, `${musics[1].text}`, musics[1].musicStart, musics[1].musicEnd)}>
@@ -104,7 +104,7 @@ const MusicSection = ({ handleCloseSection }) => {
           <div className='w-72 h-28 bg-[#ce4177] rounded-md music-album p-2 flex gap-2'>
             <img src="./img/music/album/album2.png" alt="" className='h-full aspect-square' />
             <div className='flex flex-col text-sm font-bold w-full'>
-              <span className='font-light'>{musics[2].title}</span>
+              <span>{musics[2].title}</span>
               <span className='text-white'>{musics[2].vocalist}</span>
               <div className='h-full flex items-end w-full justify-center'>
                 <button className='bg-black p-2 rounded-full' onClick={() => handleShowPlayingSection(`${musics[2].vocalist} - ${musics[2].title}`, `${musics[2].musicSrc}`, `${musics[2].text}`, musics[2].musicStart, musics[2].musicEnd)}>
@@ -126,9 +126,9 @@ const MusicSection = ({ handleCloseSection }) => {
         <img src="./img/music/musiceffect.png" alt="" className='absolute top-24 right-7 w-36 love' />
         <img src="./img/music/star.png" alt="" className='absolute top-14 right-72 w-28 h-28/' />
         <img src="./img/music/3star.png" alt="" className='absolute bottom-24 left-80 w-20 ribbon-shake' />
-        <div className='absolute top-28 right-28 rotate-12 text-center text-4xl'>
+        <div className='absolute top-28 right-80 rotate-12 text-center text-4xl'>
           <span className='absolute font-bold w-max  text-center font-chewy text-[#fc7397]'>PLAYLIST FOR <br /> YOU!!!</span>
-          <span className='absolute -top-1 left-[1px] w-max font-bold font-chewy text-transparent splice-text'>PLAYLIST FOR <br /> YOU!!!</span>
+          <span className='absolute left-[1px] w-max font-bold font-chewy text-transparent splice-text'>PLAYLIST FOR <br /> YOU!!!</span>
         </div>
 
 
@@ -226,9 +226,9 @@ const MusicPlayingSection = ({ title, text, musicSrc, musicStart, musicEnd, hand
     <div className='absolute top-0 left-0 w-screen h-screen z-20 flex justify-center items-center'>
       <div className='absolute top-0 left-0 w-full h-screen bg-black bg-opacity-70 backdrop-blur-xl'></div>
 
-      <div className={`w-96 h-80 relative z-10 flex items-center  justify-center ${isRendered && !isShrinking ? 'scale-100' : 'scale-0'} duration-[3s]`}>
+      <div className={`w-96 h-80 relative z-10 flex items-center  justify-center`}>
         <img src="./img/music/box.png" alt="" className='w-full bg-cover -z-10' />
-        <span className='absolute -translate-y-4 text-white text-3xl text-center max-w-56 font-chewy'>{text}</span>
+        <span className={`absolute -translate-y-4 text-white text-3xl text-center max-w-56 font-chewy ${isRendered && !isShrinking ? 'scale-100' : 'scale-0'} duration-[3s]`}>{text}</span>
         <span className='absolute top-[285px] text-lg max-w-80 leading-5 left-4 font-josefinssans'>{title}</span>
       </div>
 
