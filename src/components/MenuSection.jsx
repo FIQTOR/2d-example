@@ -4,7 +4,7 @@ import GiftSection from "./giftSection";
 import MailSection from "./mailSection";
 import MusicSection from "./musicSection";
 
-const MenuSection = ({ showMenu, setShowMenu }) => {
+const MenuSection = ({ handleMenu, clickSoundEffect, typewritingSoundEffect }) => {
   const [isRendered, setIsRendered] = useState(false);
   const [mailSection, setMailSection] = useState(false);
   const [gallerySection, setGallerySection] = useState(false);
@@ -31,6 +31,8 @@ const MenuSection = ({ showMenu, setShowMenu }) => {
   }
 
   function handleCloseSection() {
+    clickSoundEffect();
+    typewritingSoundEffect(false)
     setMailSection(false);
     setGallerySection(false);
     setMusicSection(false);
@@ -38,22 +40,22 @@ const MenuSection = ({ showMenu, setShowMenu }) => {
   }
 
   if (mailSection) {
-    return <MailSection handleCloseSection={handleCloseSection} />;
+    return <MailSection handleCloseSection={handleCloseSection} clickSoundEffect={clickSoundEffect} />;
   }
   if (gallerySection) {
-    return <GallerySection handleCloseSection={handleCloseSection} />;
+    return <GallerySection handleCloseSection={handleCloseSection} clickSoundEffect={clickSoundEffect} typewritingSoundEffect={typewritingSoundEffect} />;
   }
   if (musicSection) {
     return <MusicSection handleCloseSection={handleCloseSection} />;
   }
   if (giftSection) {
-    return <GiftSection handleCloseSection={handleCloseSection} />;
+    return <GiftSection handleCloseSection={handleCloseSection} clickSoundEffect={clickSoundEffect} typewritingSoundEffect={typewritingSoundEffect} />;
   }
 
   return (
     <div className="absolute w-full min-h-screen left-0 top-0 bg-black bg-opacity-70 flex justify-center items-center z-20 backdrop-blur-2xl">
       <button
-        onClick={() => handleOpenSection(setMailSection)}
+        onClick={() => { handleOpenSection(setMailSection); clickSoundEffect(); }}
         className={`${isRendered ? "translate-x-32 md:translate-x-60" : "translate-x-0"
           } absolute flex justify-center items-center w-32 h-32 md:w-64 md:h-64 active:opacity-90 duration-300`}
       >
@@ -61,14 +63,14 @@ const MenuSection = ({ showMenu, setShowMenu }) => {
 
       </button>
       <button
-        onClick={() => handleOpenSection(setMusicSection)}
+        onClick={() => { handleOpenSection(setMusicSection); clickSoundEffect(); }}
         className={`${isRendered ? "-translate-x-32 md:-translate-x-60" : "translate-x-0"
           } absolute flex justify-center items-center w-32 h-32 md:w-64 md:h-64 active:opacity-90 duration-300`}
       >
         <img src="img/music1.png" className="absolute w-32 md:w-64" />
       </button>
       <button
-        onClick={() => handleOpenSection(setGiftSection)}
+        onClick={() => { handleOpenSection(setGiftSection); clickSoundEffect(); }}
         className={`${isRendered ? "translate-y-28 md:translate-y-52" : "translate-y-0"
           } absolute flex justify-center items-center w-32 h-32 md:w-64 md:h-64 active:opacity-90 duration-300`}
       >
@@ -76,7 +78,7 @@ const MenuSection = ({ showMenu, setShowMenu }) => {
 
       </button>
       <button
-        onClick={() => handleOpenSection(setGallerySection)}
+        onClick={() => { handleOpenSection(setGallerySection); clickSoundEffect(); }}
         className={`${isRendered ? "-translate-y-28 md:-translate-y-60" : "translate-y-0"
           } absolute flex justify-center items-center w-32 h-32 md:w-64 md:h-64 active:opacity-90 duration-300`}
       >
@@ -84,8 +86,8 @@ const MenuSection = ({ showMenu, setShowMenu }) => {
       </button>
       <div className={`absolute z-20 flex justify-center items-center`}>
         <button
-          className="active:opacity-90 z-10 translate-y-4"
-          onClick={() => setShowMenu(!showMenu)}
+          className="active:opacity-90 z-10 md:translate-y-[25px]"
+          onClick={handleMenu}
         >
           <img src="img/love.webp" className="w-20 md:w-[14vw] aspect-square" />
         </button>

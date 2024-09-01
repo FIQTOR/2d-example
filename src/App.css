@@ -48,6 +48,10 @@
   -webkit-text-stroke: 1px #a30d42;
 }
 
+.mobile-stroke-text {
+  -webkit-text-stroke: .2px #a30d42;
+}
+
 .splice-text {
   -webkit-text-stroke: 1px #ff0063;
   /* Stroke width and color */
@@ -60,8 +64,17 @@
   /* Offset the stroke 2px to the right */
 }
 
+.mobile-black-splice-text {
+  -webkit-text-stroke: .5px #000;
+  /* Stroke width and color */
+  /* Offset the stroke 2px to the right */
+}
 
+
+html,
 body {
+  padding: 0;
+  margin: 0;
   background-color: rgba(238, 99, 160);
 }
 
@@ -100,11 +113,13 @@ body {
 
   0%,
   100% {
-    rotate: 90deg;
+    rotate: 0;
+    animation-timing-function: ease;
   }
 
   50% {
-    rotate: 100deg;
+    rotate: -12deg;
+    animation-timing-function: ease-out;
   }
 }
 
@@ -410,5 +425,65 @@ body {
     -moz-transform: translateX(25px) rotate(12deg);
     -ms-transform: translateX(25px) rotate(12deg);
     -o-transform: translateX(25px) rotate(12deg);
+  }
+}
+
+/* text music */
+.scale-up {
+  animation: scaleUp 0.5s forwards;
+}
+
+.scale-down {
+  animation: scaleDown 0.5s forwards;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleDown {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.animate-star {
+  animation: star-animation 2s infinite;
+  -webkit-animation: star-animation 2s infinite;
+}
+
+@keyframes star-animation {
+  0% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -o-transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
