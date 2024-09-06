@@ -230,12 +230,10 @@ const SecondPage = ({ handleCloseSection, typewritingSoundEffect, clickSoundEffe
       <img src="img/music/wave-bottom-right.png" alt="" className='absolute scale-[2] md:scale-100 -bottom-20 -right-40 md:-bottom-[50vw] md:-right-60 unselectable -z-10' />
       <div className='absolute top-0 left-0 w-screen h-screen bg-black bg-opacity-20 -z-10'></div>
 
-      <img src="img/wave2.png" alt="" className='absolute -z-10 -md:top-[42rem] md:-left-[38rem]' />
-      <img src="img/wave3.png" alt="" className='absolute -z-10 -bottom-[40rem] -right-[60rem]' />
 
       <div className='w-full h-full flex flex-col md:flex-row justify-center items-center gap-8 md:gap-[10vw]'>
         <button onClick={stopTypewriterEffect} className='font-fredoka text-[#702c2b] md:pl-24'>
-          <img src="img/splash2.png" alt="" className='absolute -z-10 translate-x-0 md:-translate-x-40 -translate-y-28 md:-translate-y-60 scale-[.65] md:scale-[.72]' />
+          <img src="img/splash2.png" alt="" className='absolute -z-20 translate-x-0 md:-translate-x-40 -translate-y-28 md:-translate-y-60 scale-[.65] md:scale-[.72]' />
           <div className='breathe'>
             <img src="img/cloud.png" alt="" className='absolute w-20 md:w-40 translate-x-52 md:translate-x-[22rem] -translate-y-5 md:-translate-y-10 -scale-x-100' />
             <img src="img/cloud.png" alt="" className='absolute w-20 md:w-40 -translate-x-5 md:-translate-x-10 translate-y-28 md:translate-y-52' />
@@ -249,7 +247,7 @@ const SecondPage = ({ handleCloseSection, typewritingSoundEffect, clickSoundEffe
           </div>
         </button>
         <div className='grid grid-cols-2 gap-y-4 md:gap-y-10 gap-x-4 md:gap-x-14 justify-center items-center scale-100 md:scale-75 max-w-3xl'>
-          <img src="img/splash.png" alt="" className='absolute -z-20 top-40 md:-top-14 -translate-x-32 w-[950px]' />
+          <img src="img/splash.png" alt="" className='absolute -z-20 top-0 md:-top-14 -translate-x-32 w-[950px]' />
           {/* Gallery Bellow */}
           <button className={`${isRendered[0] ? 'scale-100' : 'scale-150'} relative w-40 h-40 md:w-full md:h-auto duration-300`} onClick={() => handleMailIndex(0)}>
             <div className='absolute -translate-y-4 -translate-x-5 md:-translate-x-10 z-20'>
@@ -348,26 +346,28 @@ const ShowPhoto = ({ mail, handleMailIndex, handleRenderIndex, mailIndex, typewr
       </button>
       <img src="img/gallery/wave-top-left.png" alt="" className='absolute w-full -top-32 md:-top-[650px] -left-20 md:-left-[600px] unselectable -z-20 scale-[2.0] md:scale-100' />
       <img src="img/music/wave-bottom-right.png" alt="" className='absolute  -bottom-32 md:-bottom-[800px] -right-40 md:-right-60 unselectable -z-20 scale-[2.0] md:scale-100' />
+      <div className='absolute top-0 left-0 w-screen h-screen bg-black bg-opacity-20 -z-10'></div>
+
       <div className={`w-[300px] md:w-[30vw] h-full flex items-center rounded-2xl overflow-hidden duration-300 ${isRendered ? 'scale-100 translate-y-0' : 'scale-50 translate-x-0 translate-y-40 md:translate-y-0 md:translate-x-96'}`}>
         <img src={mail?.image} alt="" />
       </div>
-      <div className={`${isRendered ? 'translate-x-40 md:-translate-x-24 translate-y-12 visible' : '-translate-y-20 translate-x-20 md:translate-x-40 md:-translate-y-0 invisible'} absolute -z-20  md:-translate-y-40 left-10 rotate-[160deg] md:-rotate-[30deg] duration-500 delay-200`}>
+      <div className={`${isRendered ? 'translate-x-40 md:-translate-x-24 translate-y-12 visible' : '-translate-y-20 translate-x-20 md:translate-x-40 md:-translate-y-0 invisible'} absolute -z-10  md:-translate-y-40 left-10 rotate-[160deg] md:-rotate-[30deg] duration-500 delay-200`}>
         <img src="img/normalface.png" alt="" className='w-[180px] md:w-[350px] breathe' />
       </div>
-      <div className={`${isRendered ? '-translate-y-[270px] md:-translate-y-60 translate-x-0 visible' : 'translate-y-0 md:-translate-x-80 invisible'} absolute duration-700 delay-300 -z-20 md:right-20 rotate-0 md:rotate-[30deg]`}>
+      <div className={`${isRendered ? '-translate-y-[290px] md:-translate-y-60 translate-x-0 visible' : 'translate-y-0 md:-translate-x-80 invisible'} absolute duration-700 delay-300 -z-10 md:right-20 rotate-0 md:rotate-[30deg]`}>
         <img src="img/normalface.png" alt="" className='w-[150px] md:w-[350px] breathe' />
       </div>
-      <button onClick={stopTypewriterEffect} className={`${isRendered ? 'translate-x-0 translate-y-0 md:translate-y-0 visible' : 'translate-x-0 -translate-y-40 md:translate-y-0 md:-translate-x-80 invisible'}  -z-10 duration-300 delay-200 text-white rounded w-[250px] md:w-[650px] flex relative`}>
+      <button onClick={stopTypewriterEffect} className={`${isRendered ? 'translate-x-0 translate-y-16 md:translate-y-0 visible' : 'translate-x-0 -translate-y-40 md:translate-y-0 md:-translate-x-80 invisible'}  -z-10 duration-300 delay-200 text-white rounded w-[300px] md:w-[650px] flex relative`}>
         <div className='absolute -z-10 translate-x-3 -translate-y-3'>
-          <img src="img/gallery_box_1.webp" alt="" className='w-[250px] md:w-[650px]' />
+          <img src="img/gallery_box_1.webp" alt="" className='w-[300px] md:w-[650px]' />
         </div>
         <div className='flex items-center justify-center'>
-          <img src="img/gallery_box_2.webp" alt="" className='w-[250px] md:w-[650px]' />
-          <span className='absolute -translate-y-12 md:-translate-y-32 font-bold text-lg md:text-5xl font-introrust text-[#EE63A0] text-center'>{mail?.title}</span>
-          <span className='absolute -translate-y-[50px] md:-translate-y-[130px] -translate-x-[2px] md:-translate-x-1 font-introrust font-bold text-lg md:text-5xl text-[#EE63A0] text-transparent mobile-black-splice-text md:black-splice-text text-center'>{mail?.title}</span>
+          <img src="img/gallery_box_2.webp" alt="" className='w-[300px] md:w-[650px]' />
+          <span className='absolute -translate-y-16 md:-translate-y-32 font-bold text-lg md:text-5xl font-introrust text-[#EE63A0] text-center'>{mail?.title}</span>
+          <span className='absolute -translate-y-[65px] md:-translate-y-[130px] -translate-x-[2px] md:-translate-x-1 font-introrust font-bold text-lg md:text-5xl text-[#EE63A0] text-transparent mobile-black-splice-text md:black-splice-text text-center'>{mail?.title}</span>
           <span className='absolute w-[200px] md:w-[500px] font-fredoka text-[#702c2b] text-sm md:text-3xl font-semibold text-left'>{displayText_}</span>
-          <span className='absolute translate-x-10 translate-y-[50px] md:translate-y-32  md:translate-x-40 font-bold text-md md:text-5xl text-[#EE63A0] font-introrust'>{mail?.date}</span>
-          <span className='absolute translate-x-[38px] translate-y-12 md:translate-y-32 md:translate-x-[156px] font-bold text-md md:text-5xl text-[#EE63A0] font-introrust text-transparent mobile-black-splice-text md:black-splice-text'>{mail?.date}</span>
+          <span className='absolute translate-x-10 translate-y-[65px] md:translate-y-32  md:translate-x-40 font-bold text-md md:text-5xl text-[#EE63A0] font-introrust'>{mail?.date}</span>
+          <span className='absolute translate-x-[38px] translate-y-16 md:translate-y-32 md:translate-x-[156px] font-bold text-md md:text-5xl text-[#EE63A0] font-introrust text-transparent mobile-black-splice-text md:black-splice-text'>{mail?.date}</span>
         </div>
       </button>
     </div>
