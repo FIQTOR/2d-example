@@ -4,7 +4,7 @@ import GiftSection from "./giftSection";
 import MailSection from "./mailSection";
 import MusicSection from "./musicSection";
 
-const MenuSection = ({ handleMenu, clickSoundEffect, typewritingSoundEffect }) => {
+const MenuSection = ({ handleMenu, BGM, clickSoundEffect, typewritingSoundEffect }) => {
   const [isRendered, setIsRendered] = useState(false);
   const [mailSection, setMailSection] = useState(false);
   const [gallerySection, setGallerySection] = useState(false);
@@ -31,7 +31,6 @@ const MenuSection = ({ handleMenu, clickSoundEffect, typewritingSoundEffect }) =
   }
 
   function handleCloseSection() {
-    clickSoundEffect();
     typewritingSoundEffect(false)
     setMailSection(false);
     setGallerySection(false);
@@ -46,7 +45,7 @@ const MenuSection = ({ handleMenu, clickSoundEffect, typewritingSoundEffect }) =
     return <GallerySection handleCloseSection={handleCloseSection} clickSoundEffect={clickSoundEffect} typewritingSoundEffect={typewritingSoundEffect} />;
   }
   if (musicSection) {
-    return <MusicSection handleCloseSection={handleCloseSection} />;
+    return <MusicSection handleCloseSection={handleCloseSection} BGM={BGM} />;
   }
   if (giftSection) {
     return <GiftSection handleCloseSection={handleCloseSection} clickSoundEffect={clickSoundEffect} typewritingSoundEffect={typewritingSoundEffect} />;

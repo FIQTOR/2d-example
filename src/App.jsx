@@ -3,7 +3,6 @@ import "./App.css";
 import MenuSection from "./components/MenuSection";
 import OpeningSection from "./components/OpeningSection";
 import clickSound from './sound/click.mp3'
-import TypewritingSound from './sound/typewriter.mp3'
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
@@ -13,7 +12,6 @@ function App() {
   const [blink, setBlink] = useState(false);
 
   // Sound
-  const typewritingAudio = new Audio(TypewritingSound);
   const clickAudio = new Audio(clickSound);
 
   useEffect(() => {
@@ -43,38 +41,90 @@ function App() {
     clickAudio.currentTime = 0; // Reset waktu ke awal
     clickAudio.play();
   }
-  function pauseAudio(audio) {
-    return new Promise((resolve) => {
-      console.log('Attempting to pause audio');
-      audio.pause();
-      audio.onpause = () => {
-        resolve();
-      };
-      // Check if audio is already paused (for debugging)
-      if (audio.paused) {
-        resolve();
-      }
-    });
-  }
+
+  const BGMRef = useRef(null);
+  const typewritingSoundEffectRef = useRef(null);
 
   async function typewritingSoundEffect(play) {
+    const audio = typewritingSoundEffectRef.current;
 
-    if (play === true) {
-      if (typewritingAudio.paused) {
-        // Jika audio dalam keadaan pause, maka mulai audio
-        typewritingAudio.currentTime = 0;
-        typewritingAudio.loop = true;
-        typewritingAudio.play();
+    if (audio) {
+      if (play === true) {
+        audio.loop = true;
+
+        if (audio.paused) {
+          // Start the audio if it is paused
+
+          await audio.play();
+        } else {
+          // Reset the audio to the beginning if it is already playing
+
+        }
+
       } else {
-        // Jika audio sudah bermain, reset ke awal dan lanjutkan
-        typewritingAudio.currentTime = 0;
-        typewritingAudio.loop = false;
+        audio.loop = false;
+
+        // Pause the audio and ensure the promise resolves correctly
+        return new Promise((resolve) => {
+          audio.pause();
+
+          audio.onpause = () => {
+            resolve();
+          };
+
+          if (audio.paused) {
+            resolve();
+          }
+        });
       }
     } else {
-      await pauseAudio(typewritingAudio);
-      typewritingAudio.loop = false;
+      // console.error('Audio reference is null');
     }
   }
+
+  async function BGM(play) {
+    const audio = BGMRef.current;
+
+    if (audio) {
+      if (play === true) {
+        audio.loop = true;
+
+        if (audio.paused) {
+          // Start the audio if it is paused
+          audio.currentTime = 0;
+          await audio.play();
+        } else {
+          // Reset the audio to the beginning if it is already playing
+          audio.currentTime = 0;
+        }
+
+      } else {
+        audio.loop = false;
+
+        // Pause the audio and ensure the promise resolves correctly
+        return new Promise((resolve) => {
+          audio.pause();
+
+          audio.onpause = () => {
+            resolve();
+          };
+
+          if (audio.paused) {
+            resolve();
+          }
+        });
+      }
+    } else {
+      // console.error('Audio reference is null');
+    }
+  }
+
+  const [volume, setVolume] = useState(1);
+  const handleVolumeChange = (e) => {
+    const newVolume = e.target.value / 100;
+    BGMRef.current.volume = newVolume;
+    setVolume(newVolume);
+  };
 
   const handleBlink = () => {
     setInterval(() => {
@@ -116,14 +166,22 @@ function App() {
     clickSoundEffect()
     setShowMenu(!showMenu);
   }
-  if (openingSection) {
-    return <OpeningSection SetState={setOpeningSection} clickSoundEffect={clickSoundEffect} typewritingSoundEffect={typewritingSoundEffect} />;
-  }
-
 
   return (
     <div className="flex bg-[rgba(238,99,160)] w-full min-h-screen justify-center absolute left-0 top-0 overflow-hidden">
-      {showMenu && <MenuSection handleMenu={handleMenu} clickSoundEffect={clickSoundEffect} typewritingSoundEffect={typewritingSoundEffect} />}
+      {openingSection && <OpeningSection SetState={setOpeningSection} clickSoundEffect={clickSoundEffect} BGM={BGM} typewritingSoundEffect={typewritingSoundEffect} />}
+      {showMenu && <MenuSection handleMenu={handleMenu} BGM={BGM} clickSoundEffect={clickSoundEffect} typewritingSoundEffect={typewritingSoundEffect} />}
+
+      <audio ref={BGMRef} src='./sound/bgm.mp3' autoPlay={true} loop></audio>
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value={volume * 100}
+        onChange={handleVolumeChange}
+        className="absolute w-96 max-w-sm bottom-7 left-7 z-50 hidden md:inline opacity-0 hover:opacity-100 duration-300"
+      />
+      <audio ref={typewritingSoundEffectRef} src='./sound/typewriter.mp3' loop></audio>
 
       <img src="img/music/wave-top-left.png" alt="" className='absolute md:hidden -top-32 -left-32 scale-150 md:scale-100 md:-top-[800px] md:-left-60 unselectable' />
       <img src="img/music/wave-bottom-right.png" alt="" className='absolute md:hidden -bottom-32 -right-32 scale-150 md:scale-100 md:-bottom-[800px] md:-right-60 unselectable' />
@@ -132,7 +190,7 @@ function App() {
         onClick={handleShy}
         className={`${shyDuration !== 0 && "shake"} w-[1600px] min-h-screen flex justify-center items-center z-[15]`}
       >
-        <img src="img/muka.png" alt="" className="absolute hidden lg:block w-full min-w-[600px]" />
+        <img src="img/muka.png" alt="" className="absolute hidden lg:block min-w-[120vw]" />
         <img src="img/blankface.png" alt="" className="absolute lg:hidden w-full min-w-[600px]" />
         <div className="absolute hidden top-0 left-0 w-full lg:flex justify-center -translate-y-10">
           <div className="absolute w-40 -translate-y-5 -translate-x-24">
@@ -187,7 +245,7 @@ function App() {
           <img src="img/love.webp" className="w-20 md:w-[14vw] aspect-square breathe" />
         </button>
       </div>
-    </div>
+    </div >
   );
 }
 

@@ -174,17 +174,17 @@ body {
 
 .cloud1 {
   animation: cloud 3s infinite;
-  animation-delay: 1s;
+  animation-delay: -1s;
 }
 
 .cloud2 {
   animation: cloud 3s infinite;
-  animation-delay: 1.5s;
+  animation-delay: -1.5s;
 }
 
 .cloud3 {
   animation: cloud 3s infinite;
-  animation-delay: 2s;
+  animation-delay: -2s;
 }
 
 

@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
 import { Navigation } from 'swiper/modules';
+import { desktopImages, mobileImages } from '../common/mail';
 
 const MailSection = ({ handleCloseSection, clickSoundEffect }) => {
   const [isRendered, setIsRendered] = useState(false);
@@ -40,6 +41,9 @@ const BookResponsive = ({ clickSoundEffect }) => {
   const swiperRefMobile = useRef(null);
   const [activeIndexMobile, setActiveIndexMobile] = useState(0);
 
+  const dekstopImages_ = desktopImages
+  const mobileImages_ = mobileImages
+
   return (
     <>
       <div className="hidden relative w-full min-h-screen md:flex items-center justify-center text-white overflow-visible">
@@ -69,7 +73,7 @@ const BookResponsive = ({ clickSoundEffect }) => {
               style={{ display: 'flex' }}
             >
               <img
-                src={`./img/mail/buku/desktop/halaman (${index + 1}).png`}
+                src={dekstopImages_[index]}
                 alt=""
                 className={`w-full h-full ${(index !== 3 && index !== 5) && 'translate-y-20'} duration-300`}
               />
@@ -113,7 +117,7 @@ const BookResponsive = ({ clickSoundEffect }) => {
               style={{ display: 'flex' }}
             >
               <img
-                src={`./img/mail/buku/mobile/halaman (${index + 1}).png`}
+                src={mobileImages_[index]}
                 alt=""
                 className={`w-full h-full ${(index === 1 || index === 4) && '-translate-y-12'} ${index === activeIndexMobile ? 'scale-[2]' : 'scale-100 opacity-70'} duration-300`}
               />
